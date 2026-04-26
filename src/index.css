@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;500;600;700;1,6..72,400;500;600;700&family=Amiri:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Newsreader", ui-serif, Georgia, serif;
+  --font-amiri: "Amiri", serif;
+
+  --color-brand-emerald: #D4AF37; /* Gold Accent */
+  --color-brand-sage: #05070A;    /* Deep Dark Background */
+  --color-brand-primary-container: #0E1118; /* Card Background */
+  --color-brand-on-primary-container: #FFFFFF;
+  
+  --color-emerald-50: rgba(255, 255, 255, 0.03);
+  --color-emerald-100: rgba(255, 255, 255, 0.08);
+  --color-emerald-200: rgba(255, 255, 255, 0.15);
+  --color-emerald-600: rgba(255, 255, 255, 0.5);
+  --color-emerald-700: rgba(255, 255, 255, 0.6);
+  --color-emerald-800: rgba(212, 175, 55, 0.8);
+  --color-emerald-900: #E0E1E6;
+  --color-emerald-950: #FFFFFF;
+
+  --radius-xl: 1.5rem;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-sage text-emerald-900 font-sans antialiased;
+  }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.dir-rtl {
+  direction: rtl;
+}

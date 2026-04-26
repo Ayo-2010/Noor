@@ -1,0 +1,116 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User statistics and progress tracking.",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "streak": { "type": "number" },
+        "dailyGoal": { "type": "number" },
+        "versesReadToday": { "type": "number" },
+        "level": { "type": "number" },
+        "xp": { "type": "number" },
+        "nextLevelXp": { "type": "number" },
+        "lastActive": { "type": "string", "format": "date-time" }
+      },
+      "required": ["displayName", "streak", "dailyGoal", "level", "xp"]
+    },
+    "Reflection": {
+      "title": "Quranic Reflection",
+      "description": "A user's thought or lesson shared with the community.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userPhoto": { "type": "string" },
+        "text": { "type": "string" },
+        "verseKey": { "type": "string" },
+        "verseText": { "type": "string" },
+        "verseTranslation": { "type": "string" },
+        "likesCount": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "text", "verseKey", "createdAt"]
+    },
+    "Bookmark": {
+      "title": "Bookmark",
+      "description": "A saved verse for later reading.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "verseKey": { "type": "string" },
+        "surahName": { "type": "string" },
+        "verseTranslation": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "verseKey", "createdAt"]
+    },
+    "Collection": {
+      "title": "Collection",
+      "description": "A group of verses related by a theme.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "image": { "type": "string" },
+        "itemCount": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "name", "createdAt"]
+    },
+    "Activity": {
+      "title": "User Activity",
+      "description": "Log of user actions for the journey timeline.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "type": { "type": "string", "enum": ["read", "reflection", "milestone"] },
+        "detail": { "type": "string" },
+        "subDetail": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "type", "timestamp"]
+    },
+    "Note": {
+      "title": "Personal Note",
+      "description": "Private thoughts and notes on a specific verse.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "verseKey": { "type": "string" },
+        "text": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "verseKey", "text", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Individual user profiles and stats."
+    },
+    "/reflections/{reflectionId}": {
+      "schema": "Reflection",
+      "description": "Community and private reflections."
+    },
+    "/notes/{noteId}": {
+      "schema": "Note",
+      "description": "User's private notes on verses."
+    },
+    "/bookmarks/{bookmarkId}": {
+      "schema": "Bookmark",
+      "description": "User bookmarks."
+    },
+    "/collections/{collectionId}": {
+      "schema": "Collection",
+      "description": "User created collections."
+    },
+    "/activities/{activityId}": {
+      "schema": "Activity",
+      "description": "User activity logs."
+    }
+  }
+}
